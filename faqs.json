@@ -1,0 +1,12 @@
+{
+  "faqs": [
+    {"intent":"greeting","question":"hello hi hey good morning","answer":"Hello! I’m your support assistant. How can I help you today?"},
+    {"intent":"order_status","question":"where is my order order tracking track package","answer":"You can check your order status from your Orders page. If you share your order number with a human agent, they can also check the latest shipment scan."},
+    {"intent":"refund","question":"I want a refund return my purchase get my money back","answer":"Refunds are normally started after a return is approved. Keep your order number and reason for return ready for support."},
+    {"intent":"delivery","question":"how long delivery shipping time when will package arrive","answer":"Standard delivery usually takes 3–7 business days after dispatch. Remote locations may take longer."},
+    {"intent":"payment","question":"payment failed card declined cannot pay payment methods","answer":"Please verify your card details and available balance. If the payment still fails, try another supported payment method or contact your bank."},
+    {"intent":"cancel","question":"cancel my order stop shipment","answer":"If your order has not shipped, support may be able to cancel it. Once shipped, you may need to use the return process."},
+    {"intent":"hours","question":"support hours customer service open time","answer":"Customer support is available Monday–Saturday, 9:00 AM–6:00 PM local time."},
+    {"intent":"thanks","question":"thank you thanks great helpful","answer":"You’re welcome! If there’s anything else, just ask."}
+  ]
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Support Chatbot</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="shell">
+  <header><div class="badge">NLP • Flask • SQLite</div><h1>AI Support Assistant</h1>
+  <p>Ask about orders, refunds, delivery, payments, cancellations, or support hours.</p></header>
+  <section id="chat" class="chat"></section>
+  <form id="form" class="composer">
+    <input id="message" autocomplete="off" placeholder="Type your question…" required>
+    <button>Send</button>
+  </form>
+  <div class="suggestions">
+    <button data-q="Where is my order?">Order status</button>
+    <button data-q="How do I get a refund?">Refund</button>
+    <button data-q="How long is delivery?">Delivery</button>
+  </div>
+</main>
+<script>
+const sessionId = crypto.randomUUID();
+const chat = document.querySelector("#chat");
+function add(text, who) {
+  const el=document.createElement("div"); el.className="bubble "+who;
+  el.textContent=text; chat.appendChild(el); chat.scrollTop=chat.scrollHeight;
+}
+add("Hi! I can help with common customer-support questions.", "bot");
+async function send(message){
+  add(message,"user");
+  const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({message,session_id:sessionId})});
+  const data=await res.json(); add(data.response || data.error || "Something went wrong.","bot");
+}
+document.querySelector("#form").addEventListener("submit",e=>{
+  e.preventDefault(); const i=document.querySelector("#message"); const v=i.value.trim();
+  if(v){i.value="";send(v);}
+});
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>send(b.dataset.q));
+</script>
+</body></html>
